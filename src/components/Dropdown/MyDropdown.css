@@ -1,0 +1,13 @@
+.dropdown-btn {
+  background-color: yellowgreen !important;
+  color: white !important;
+  border: none !important;
+  box-shadow: none !important;
+  opacity: 1 !important;
+}
+
+/* Optional: Add hover effect */
+.dropdown-btn:hover, .dropdown-btn:focus {
+  background-color: #8cc152 !important;
+  color: white !important;
+}

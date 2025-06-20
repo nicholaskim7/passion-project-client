@@ -1,0 +1,67 @@
+
+.custom-container {
+  margin-top: 1rem;
+  border-style: solid;
+  border-width: 1px;
+  border-color: greenyellow;
+  box-shadow: greenyellow;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  padding: 1rem;
+}
+
+.form-container {
+  margin-top: 1rem;
+  border-style: solid;
+  border-width: 1px;
+  border-color: greenyellow;
+  box-shadow: greenyellow;
+  flex-direction: row;
+  gap: 10px;
+  padding: 1rem;
+}
+
+ul.exercise-list {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+ul.exercise-list li {
+  flex: 1 1 30%;
+  min-width: 250px;
+}
+
+.form-group-inline {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.form-input {
+  max-width: 115px;
+  margin-bottom: 0;
+}
+
+.set-buttons {
+  margin: 1rem;
+  font-size: 2em;
+}
+
+.set-buttons:hover {
+  border-style: solid;
+  border-width: 1px;
+  border-color: greenyellow;
+}
+
+.workout-name {
+  font-weight: bold;
+  color: yellowgreen;
+}
