@@ -6,6 +6,7 @@
 
 .button {
   margin: 2em;
-  background-color: rgb(197, 216, 235);
+  background-color: yellowgreen;
   border-radius: 0.5rem;
+  color: black;
 }

@@ -1,28 +1,37 @@
 import React, { useState } from 'react'
 import Dropdown from 'react-bootstrap/Dropdown';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import './MyDropdown.css';
 
 
 function MyDropdown({ onSelect }) {
   const [title, setTitle] = useState("Select a workout");
+  const [selectedIcon, setSelectedIcon] = useState(null);
 
-  const handleSelect = (eventKey) => {
-    setTitle(eventKey);
-    if (onSelect) onSelect(eventKey);
+  const handleSelect = (e) => {
+    const selectedWorkout = e.target.getAttribute("data-key");
+    setSelectedIcon(selectedWorkout);
+    setTitle(selectedWorkout);
+    if (onSelect) onSelect(selectedWorkout);
   };
   return (
-    <Dropdown onSelect={handleSelect}>
-      <Dropdown.Toggle as="button">
-        {title}
-      </Dropdown.Toggle>
+    // <Dropdown onSelect={handleSelect}>
+    //   <Dropdown.Toggle as="button" className='dropdown-btn'>
+    //     {title}
+    //   </Dropdown.Toggle>
 
-      <Dropdown.Menu>
-        <Dropdown.Item eventKey="Chest day">Chest day</Dropdown.Item>
-        <Dropdown.Item eventKey="Back day">Back day</Dropdown.Item>
-        <Dropdown.Item eventKey="Leg day">Leg day</Dropdown.Item>
-        <Dropdown.Item eventKey="Cardio">Cardio</Dropdown.Item>
-      </Dropdown.Menu>
-    </Dropdown>
+    //   <Dropdown.Menu className='menu'>
+    //     <Dropdown.Item eventKey="Chest day" className='item'>Chest day</Dropdown.Item>
+    //     <Dropdown.Item eventKey="Back day" className='item'>Back day</Dropdown.Item>
+    //     <Dropdown.Item eventKey="Leg day" className='item'>Leg day</Dropdown.Item>
+    //   </Dropdown.Menu>
+    // </Dropdown>
+
+    <div className='icon-container'>
+      <img src='../public/icons/gym.png' data-key="Chest day" className={`icon ${selectedIcon === "Chest day" ? "selected" : ""}`} onClick={handleSelect}></img>
+      <img src='../public/icons/back.png' data-key="Back day" className={`icon ${selectedIcon === "Back day" ? "selected" : ""}`} onClick={handleSelect}></img>
+      <img src='../public/icons/front.png' data-key="Leg day" className={`icon ${selectedIcon === "Leg day" ? "selected" : ""}`} onClick={handleSelect}></img>
+    </div>
   )
 }
 

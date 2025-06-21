@@ -1,13 +1,40 @@
 .dropdown-btn {
-  background-color: yellowgreen !important;
-  color: white !important;
-  border: none !important;
-  box-shadow: none !important;
-  opacity: 1 !important;
+  border-width: 1px;
+  border-color: yellowgreen;
+  border-style: solid;
 }
 
-/* Optional: Add hover effect */
-.dropdown-btn:hover, .dropdown-btn:focus {
-  background-color: #8cc152 !important;
-  color: white !important;
+.menu {
+  background-color: #1a1a1a;
+}
+
+.item {
+  color: yellowgreen;
+}
+
+.icon-container {
+  flex-direction: row;
+  justify-items: center;
+}
+
+.icon {
+  padding: 2px;
+  margin: 4px;
+}
+
+.icon:hover {
+  border-width: 0.5px;
+  border-style: solid;
+  border-color: yellowgreen;
+}
+
+.selected {
+  border-width: 0.5px;
+  border-style: solid;
+  border-color: yellowgreen;
+}
+
+img {
+  width: 100px;
+  height: 100px;
 }

@@ -41,13 +41,6 @@ function LogWorkout() {
       "RDL",
       "Deadlift",
     ],
-    "Cardio": [
-      "Incline Tredmill",
-      "Stairmaster",
-      "Running",
-      "Walking",
-    ]
-
   };
 
   const handleDropdownSelect = (option) => { // event key of selected workout day is passed from dropdown.jsx
@@ -95,7 +88,7 @@ function LogWorkout() {
 
   const handleChange = (exercise, index, field, value) => {
     setExerciseData(prev => {
-      const updatedSets = pev[exercise].map((set, i) =>
+      const updatedSets = prev[exercise].map((set, i) =>
         i == index ? { ...set, [field]: value } : set
       );
       return { ...prev, [exercise]: updatedSets };
