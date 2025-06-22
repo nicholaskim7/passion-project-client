@@ -4,7 +4,7 @@ import axios from "axios";
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import LogWorkout from "./pages/LogWorkout/LogWorkout";
 import Home from "./pages/Home/Home";
-import History from "./pages/History";
+import History from "./pages/History/History";
 
 
 function App() {

@@ -1,0 +1,11 @@
+.custom-container {
+  margin-top: 1rem;
+  border-style: solid;
+  border-width: 1px;
+  border-color: greenyellow;
+  box-shadow: greenyellow;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  padding: 1rem;
+}

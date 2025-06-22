@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 function Home() {
   return (
     <div>
-      <h1>My Fitness</h1>
+      <h1>FitBok</h1>
         <div className="card">
           <Link to="/logworkout">
             <button className="button">Log Workout</button>

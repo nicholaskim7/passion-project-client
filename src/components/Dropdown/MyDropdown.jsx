@@ -28,9 +28,9 @@ function MyDropdown({ onSelect }) {
     // </Dropdown>
 
     <div className='icon-container'>
-      <img src='../public/icons/gym.png' data-key="Chest day" className={`icon ${selectedIcon === "Chest day" ? "selected" : ""}`} onClick={handleSelect}></img>
-      <img src='../public/icons/back.png' data-key="Back day" className={`icon ${selectedIcon === "Back day" ? "selected" : ""}`} onClick={handleSelect}></img>
-      <img src='../public/icons/front.png' data-key="Leg day" className={`icon ${selectedIcon === "Leg day" ? "selected" : ""}`} onClick={handleSelect}></img>
+      <img src='../icons/gym.png' data-key="Chest day" className={`icon ${selectedIcon === "Chest day" ? "selected" : ""}`} onClick={handleSelect}></img>
+      <img src='../icons/back.png' data-key="Back day" className={`icon ${selectedIcon === "Back day" ? "selected" : ""}`} onClick={handleSelect}></img>
+      <img src='../icons/front.png' data-key="Leg day" className={`icon ${selectedIcon === "Leg day" ? "selected" : ""}`} onClick={handleSelect}></img>
     </div>
   )
 }

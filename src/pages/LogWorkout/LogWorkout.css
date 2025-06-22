@@ -65,3 +65,19 @@ ul.exercise-list li {
   font-weight: bold;
   color: yellowgreen;
 }
+
+
+.save-button {
+  background: none;
+  padding: 0;
+  cursor: pointer;
+  color: inherit;
+  margin: 1rem;
+  font-size: 2em;
+}
+
+.save-button:hover {
+  border-style: solid;
+  border-width: 1px;
+  border-color: greenyellow;
+}

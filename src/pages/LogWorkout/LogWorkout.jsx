@@ -105,6 +105,15 @@ function LogWorkout() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    fetch("http://localhost:8080/api/log-workout", {
+      method: 'post',
+      headers: {
+        "Content-Type":"application/json"
+      },
+      body: JSON.stringify(exerciseData)
+    }).then(response => response.json()).then(data => {
+      console.log(data);
+    });
     console.log('submitted:', exerciseData);
   };
 
@@ -147,7 +156,9 @@ function LogWorkout() {
                 </li>
               ))}
             </ul>
-            <FaSave type='submit' className='set-buttons'/>
+            <button type='submit' className='save-button'>
+              <FaSave />
+            </button>
           </Form>
         ) : (
           <p>No exercises selected</p>
