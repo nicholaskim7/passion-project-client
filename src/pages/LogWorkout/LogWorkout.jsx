@@ -4,6 +4,8 @@ import "./LogWorkout.css"
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { FaPlus, FaMinus, FaSave } from 'react-icons/fa';
+import { toast } from 'react-toastify';
+
 
 function LogWorkout() {
   const [selectedOption, setSelectedOption] = useState(null); // Chest day, Back day, Leg day
@@ -105,6 +107,19 @@ function LogWorkout() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    // prevent submitting when sets and or reps are left blank
+    for (const [exercise, sets] of Object.entries(exerciseData)) { // traverse exercises
+      for (let i = 0; i < sets.length; i++) { // traverse number of sets selected for each exercise
+        const { reps, weight } = sets[i] // extract reps and weight for each set
+        if (!reps || !weight || parseInt(reps) < 1 || parseFloat(weight) < 1) { // make sure it is not left blank
+          toast.error(`Please fill in all reps and weight`) // notify user to fill in the blank
+          return
+        }
+      }
+    }
+    
+    // otherwise we are safe to log the workout
     fetch("http://localhost:8080/api/log-workout", {
       method: 'post',
       headers: {
@@ -112,9 +127,12 @@ function LogWorkout() {
       },
       body: JSON.stringify(exerciseData)
     }).then(response => response.json()).then(data => {
-      console.log(data);
+      toast.success(data.message || "Workout logged successfully"); // response from server
+    })
+    .catch(error => {
+      console.log(error);
+      toast.error("There was an error logging your workout")
     });
-    console.log('submitted:', exerciseData);
   };
 
   return (
@@ -147,8 +165,8 @@ function LogWorkout() {
                   {sets.map((set, index) => (
                     <Form.Group className='form-group-inline' key={index}>
                       <Form.Label>{`set ${index + 1}`}</Form.Label>
-                      <Form.Control type="number" placeholder="# of reps" value={set.reps} onChange={(e) => handleChange(exercise, index, 'reps', e.target.value)} min="0" className='form-input'/>
-                      <Form.Control type="number" placeholder="weight" value={set.weight} onChange={(e) => handleChange(exercise, index, 'weight', e.target.value)} min="0" className='form-input'/>
+                      <Form.Control type="number" placeholder="# of reps" value={set.reps} onChange={(e) => handleChange(exercise, index, 'reps', e.target.value)} min="1" className='form-input'/>
+                      <Form.Control type="number" placeholder="weight" value={set.weight} onChange={(e) => handleChange(exercise, index, 'weight', e.target.value)} min="1" className='form-input'/>
                     </Form.Group>
                   ))}
                   <FaPlus className="set-buttons" onClick={() => handleAddSet(exercise)}/>
