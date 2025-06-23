@@ -128,6 +128,7 @@ function LogWorkout() {
       body: JSON.stringify(exerciseData)
     }).then(response => response.json()).then(data => {
       toast.success(data.message || "Workout logged successfully"); // response from server
+      setExerciseData({}); // clear exercise selection after inserting into db
     })
     .catch(error => {
       console.log(error);
