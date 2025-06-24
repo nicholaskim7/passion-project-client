@@ -1,4 +1,5 @@
 .custom-container {
+  list-style-type: none;
   margin-top: 1rem;
   border-style: solid;
   border-width: 1px;
@@ -9,3 +10,30 @@
   gap: 10px;
   padding: 1rem;
 }
+
+.exercises-container {
+  list-style-type: none;
+}
+
+.exercise-name {
+  color: yellowgreen;
+  font-size:x-large;
+}
+
+.list-of-sets {
+  border-style: solid;
+  border-width: 1px;
+  border-color: greenyellow;
+  margin-bottom: 1rem;
+}
+
+.list-of-sets > li {
+  list-style-type: none;
+  font-weight: bold;
+  margin: 5px;
+}
+
+.list-of-sets > li:hover {
+  color: yellowgreen;
+}
+
