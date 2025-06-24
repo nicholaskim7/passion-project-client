@@ -15,17 +15,6 @@ function MyDropdown({ onSelect }) {
     if (onSelect) onSelect(selectedWorkout);
   };
   return (
-    // <Dropdown onSelect={handleSelect}>
-    //   <Dropdown.Toggle as="button" className='dropdown-btn'>
-    //     {title}
-    //   </Dropdown.Toggle>
-
-    //   <Dropdown.Menu className='menu'>
-    //     <Dropdown.Item eventKey="Chest day" className='item'>Chest day</Dropdown.Item>
-    //     <Dropdown.Item eventKey="Back day" className='item'>Back day</Dropdown.Item>
-    //     <Dropdown.Item eventKey="Leg day" className='item'>Leg day</Dropdown.Item>
-    //   </Dropdown.Menu>
-    // </Dropdown>
 
     <div className='icon-container'>
       <img src='../icons/gym.png' data-key="Chest day" className={`icon ${selectedIcon === "Chest day" ? "selected" : ""}`} onClick={handleSelect}></img>

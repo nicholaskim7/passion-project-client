@@ -12,6 +12,9 @@ function Home() {
           <Link to="/history">
             <button className="button">Workout History</button>
           </Link>
+          <Link to="/your-prs">
+            <button className="button">Your Prs</button>
+          </Link>
         </div>
     </div>
   )
