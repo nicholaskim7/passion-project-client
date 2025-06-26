@@ -9,6 +9,7 @@ import Prs from "./pages/Prs/Prs";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Menu from './components/Menu/Menu';
+import Login from "./pages/Login/Login";
 
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
             <Menu />
             <Routes>
               <Route path="/" element={<Home/>}/>
+              <Route path="/login" element={<Login/>}/>
               <Route path="/logworkout" element={<LogWorkout />} />
               <Route path='/history' element={<History />} />
               <Route path='/your-prs' element={<Prs />} />

@@ -103,13 +103,19 @@ function History() {
                   {workout.exercises.map((exercise, idx) => ( // each workout session has a list of exercises that were done
                     <li key={idx}>
                       <strong className='exercise-name'>{exercise.name}</strong>
-                      <ul className='list-of-sets'>
-                        {exercise.sets.map((set, setIdx) => ( // each exercise has its respective sets and reps
-                          <li key={setIdx}>
-                            Set {setIdx + 1}: Reps: {set.reps}, Weight: {set.weight} lbs
-                          </li>
-                        ))}
-                      </ul>
+                      {exercise.category === "Strength" ? (
+                        <ul className='list-of-sets'>
+                          {exercise.sets.map((set, setIdx) => ( // each exercise has its respective sets and reps
+                            <li key={setIdx}>
+                              Set {setIdx + 1}: Reps: {set.reps}, Weight: {set.weight} lbs
+                            </li>
+                          ))}
+                        </ul>
+                      ) : (
+                        <li className='list-of-sets'>
+                          Duration (min): {exercise.cardio?.duration_minutes}, Calories burned: {exercise.cardio?.calories_burned}
+                        </li>
+                      )}
                     </li>
                   ))}
                 </div>

@@ -26,13 +26,21 @@ function Prs() {
     return (
       <div>
         {/* display users prs only standardized lifts: bench, squat, and deadlift*/}
-        {fetchedPrs.map((pr) => (
-          <div key={pr.key}>
-            <h3>{pr.name}</h3>
-            <p>{pr.weight} lbs x {pr.reps} reps</p>
-            <p>Date: {new Date(pr.date).toLocaleDateString()}</p>
-          </div>
-        ))}
+        <h3>Your Prs</h3>
+        {fetchedPrs.length > 0 ? (
+          fetchedPrs.map((pr) => (
+            <div key={pr.key}>
+              <h3 className='exercise-name'>{pr.name}</h3>
+              <p>{pr.weight} lbs x {pr.reps} reps</p>
+              <p>Date: {new Date(pr.date).toLocaleDateString()}</p>
+            </div>
+          ))
+
+        ) : (
+          <p>No prs yet</p>
+        )
+      }
+        
       </div>
     )
   }
