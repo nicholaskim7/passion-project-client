@@ -1,6 +1,6 @@
 import React from 'react';
 import './History.css';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 
 function History() {
   const [fetchedWorkouts, setFetchedWorkouts] = useState([]);
@@ -36,6 +36,8 @@ function History() {
 
 
   useEffect(() => {
+    if (!startDate || !endDate) return;
+    
     const fetchWorkouts = async () => {
       try {
         const params = new URLSearchParams();
@@ -62,17 +64,19 @@ function History() {
 
 
   // accumulate strength workouts and cardio workouts done on the same day
-  const groupedByDate = fetchedWorkouts.reduce((acc, workout) => {
-    const dateKey = new Date(workout.date).toLocaleDateString();
-    // if we have not seen this date yet initialize empty array
-    if (!acc[dateKey]) {
-      acc[dateKey] = [];
-    }
+  const groupedByDate = useMemo(() => { // memoize to avoids re-grouping every render
+    return fetchedWorkouts.reduce((acc, workout) => {
+      const dateKey = new Date(workout.date).toLocaleDateString();
+      // if we have not seen this date yet initialize empty array
+      if (!acc[dateKey]) {
+        acc[dateKey] = [];
+      }
 
-    // otherwise we want to group workouts by date
-    acc[dateKey].push(workout);
-    return acc;
-  }, {});
+      // otherwise we want to group workouts by date
+      acc[dateKey].push(workout);
+      return acc;
+    }, {});
+  }, [fetchedWorkouts]);
 
 
   return (

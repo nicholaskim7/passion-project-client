@@ -46,7 +46,7 @@ function Prs() {
           <h3>Your Strength Prs</h3>
           {fetchedStrengthPrs.length > 0 ? (
             fetchedStrengthPrs.map((pr) => (
-              <div key={pr.key}>
+              <div key={pr.key} className='box'>
                 <h3 className='exercise-name'>{pr.name}</h3>
                 <p>{pr.weight} lbs x {pr.reps} reps</p>
                 <p>Date: {new Date(pr.date).toLocaleDateString()}</p>
@@ -63,7 +63,7 @@ function Prs() {
           <h3>Your Cardio Prs</h3>
           {fetchedCardioPrs.length > 0 ? (
             fetchedCardioPrs.map((cardio) => (
-              <div key={cardio.key}>
+              <div key={cardio.key} className='box'>
                 <h3 className='exercise-name'>{cardio.name}</h3>
                   <p>{cardio.duration} minutes x {cardio.calories} calories burned</p>
                   <p>Date: {new Date(cardio.date).toLocaleDateString()}</p>
