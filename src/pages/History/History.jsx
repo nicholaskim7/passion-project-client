@@ -165,41 +165,34 @@ function History() {
           setEndDate(localEnd);
         }} 
       />
-      <ul>
-        <div className='custom-container'>
-          {Object.entries(groupedByDate).map(([date, workoutsOnThatDay]) => (
-            //iterate workout sessions
-            <li key={date}> 
-              <h4>{date}</h4>
-              <ul>
-                <div className='exercises-container'>
-                  {workoutsOnThatDay.flatMap((workout, workoutIdx) =>
-                    workout.exercises.map((exercise, idx) => ( // each workout session has a list of exercises that were done
-                    // possible for user to run treadmill twice in one day for seperate workout ids we need unique key
-                    <li key={`${workoutIdx}-${idx}`}>
-                      <strong className='exercise-name'>{exercise.name}</strong>
-                      {/* Strength workouts need to map each set */}
-                      {exercise.category === "Strength" ? (
-                        <ul className='list-of-sets'>
-                          {exercise.sets.map((set, setIdx) => ( // each exercise has its respective sets and reps
-                            <li key={setIdx}>
-                              Set {setIdx + 1}: Reps: {set.reps}, Weight: {set.weight} lbs
-                            </li>
-                          ))}
-                        </ul>
-                      ) : ( // cardio workouts
-                        <ul className='list-of-sets'>
-                          <li>Minutes: {exercise.cardio?.duration_minutes}, Calories burned: {exercise.cardio?.calories_burned}</li>
-                        </ul>
-                      )}
-                    </li>
-                  ))
-                )}
-                </div>
-              </ul>
-            </li>
-          ))}
-        </div>
+      <ul className='custom-container'>
+        {Object.entries(groupedByDate).map(([date, workoutsOnThatDay]) => (
+          <li key={date} className="workout-day">
+            <h4>{date}</h4>
+            <ul className='exercises-container'>
+              {workoutsOnThatDay.flatMap((workout, workoutIdx) =>
+                workout.exercises.map((exercise, idx) => (
+                  <li key={`${workoutIdx}-${idx}`}>
+                    <strong className='exercise-name'>{exercise.name}</strong>
+                    {exercise.category === "Strength" ? (
+                      <ul className='list-of-sets'>
+                        {exercise.sets.map((set, setIdx) => (
+                          <li key={setIdx}>
+                            Set {setIdx + 1}: Reps: {set.reps}, Weight: {set.weight} lbs
+                          </li>
+                        ))}
+                      </ul>
+                    ) : (
+                      <ul className='list-of-sets'>
+                        <li>Minutes: {exercise.cardio?.duration_minutes}, Calories burned: {exercise.cardio?.calories_burned}</li>
+                      </ul>
+                    )}
+                  </li>
+                ))
+              )}
+            </ul>
+          </li>
+        ))}
       </ul>
     </div>
   )
