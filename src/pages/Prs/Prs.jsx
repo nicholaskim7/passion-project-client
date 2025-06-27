@@ -1,46 +1,79 @@
 import React from 'react'
 import '../History/History.css';
 import { useState, useEffect } from 'react';
+import './Prs.css';
 
 function Prs() {
-  const [fetchedPrs, setFetchedPrs] = useState([]);
-    const [error, setError] = useState(null); 
+  const [fetchedStrengthPrs, setFetchedStrengthPrs] = useState([]);
+  const [fetchedCardioPrs, setFetchedCardioPrs] = useState([]);
+  const [error, setError] = useState(null); 
   
     useEffect(() => {
-      const fetchPrs = async () => {
+      const fetchStrengthPrs = async () => {
         try {
           const response = await fetch("http://localhost:8080/api/fetch-prs");
           if (!response) {
             throw new Error('Network response was not ok');
           }
           const jsonData = await response.json(); 
-          setFetchedPrs(jsonData);
+          setFetchedStrengthPrs(jsonData);
         } catch (error) {
           setError(error);
         }
       };
-      fetchPrs();
+      fetchStrengthPrs();
+
+      const fetchCardioPrs = async () => {
+        try {
+          const response = await fetch("http://localhost:8080/api/fetch-cardio-prs");
+          if (!response) {
+            throw new Error('Network response was not ok');
+          }
+          const jsonCardioData = await response.json(); 
+          setFetchedCardioPrs(jsonCardioData);
+        } catch (error) {
+          setError(error);
+        }
+      };
+      fetchCardioPrs();
     }, []);
   
   
     return (
-      <div>
+      <div className='prs-section'>
         {/* display users prs only standardized lifts: bench, squat, and deadlift*/}
-        <h3>Your Prs</h3>
-        {fetchedPrs.length > 0 ? (
-          fetchedPrs.map((pr) => (
-            <div key={pr.key}>
-              <h3 className='exercise-name'>{pr.name}</h3>
-              <p>{pr.weight} lbs x {pr.reps} reps</p>
-              <p>Date: {new Date(pr.date).toLocaleDateString()}</p>
-            </div>
-          ))
-
-        ) : (
-          <p>No prs yet</p>
-        )
-      }
+        <div className='strength'>
+          <h3>Your Strength Prs</h3>
+          {fetchedStrengthPrs.length > 0 ? (
+            fetchedStrengthPrs.map((pr) => (
+              <div key={pr.key}>
+                <h3 className='exercise-name'>{pr.name}</h3>
+                <p>{pr.weight} lbs x {pr.reps} reps</p>
+                <p>Date: {new Date(pr.date).toLocaleDateString()}</p>
+              </div>
+            ))
+          ) : (
+            <p>No strength prs yet</p>
+          )
+                }
+        </div>
         
+        {/* display cardio prs running, biking, swimming, stairmaster */}
+        <div className='cardio'>
+          <h3>Your Cardio Prs</h3>
+          {fetchedCardioPrs.length > 0 ? (
+            fetchedCardioPrs.map((cardio) => (
+              <div key={cardio.key}>
+                <h3 className='exercise-name'>{cardio.name}</h3>
+                  <p>{cardio.duration} minutes x {cardio.calories} calories burned</p>
+                  <p>Date: {new Date(cardio.date).toLocaleDateString()}</p>
+              </div>
+            ))
+          ) : (
+            <p>No cardio prs yet</p>
+          )
+          }
+        </div>
       </div>
     )
   }

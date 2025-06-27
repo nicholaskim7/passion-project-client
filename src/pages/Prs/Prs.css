@@ -1,0 +1,12 @@
+.prs-section {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.strength, .cardio {
+  flex: 1;
+  min-width: 300px;
+}
