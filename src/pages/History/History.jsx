@@ -4,15 +4,53 @@ import { useState, useEffect } from 'react';
 
 function History() {
   const [fetchedWorkouts, setFetchedWorkouts] = useState([]);
-  const [error, setError] = useState(null); 
+  const [error, setError] = useState(null);
+  const [startDate, setStartDate] = useState();
+  const [endDate, setEndDate] = useState();
+
+  // initially fetch current weeks workouts
+  useEffect(() => {
+    const now = new Date();
+
+    // start of the week
+    const startOfWeek = new Date(now);
+
+     // day of the month - day of the week = sunday of this week
+    startOfWeek.setDate(now.getDate() - now.getDay());
+
+    // rewind to beginning of the day
+    startOfWeek.setHours(0, 0, 0, 0);
+
+    // end of the week
+    const endOfWeek = new Date(now);
+
+     // day of the month + 6 - the current day of the week = saturday of this week
+    endOfWeek.setDate(now.getDate() + (6 - now.getDay()));
+
+     // very end of saturday
+    endOfWeek.setHours(23, 59, 59, 999);
+
+    setStartDate(startOfWeek);
+    setEndDate(endOfWeek);
+  }, []);
+
 
   useEffect(() => {
     const fetchWorkouts = async () => {
       try {
-        const response = await fetch("http://localhost:8080/api/fetch-workouts");
-        if (!response) {
+        const params = new URLSearchParams();
+        
+        if (startDate && endDate) {
+          // append params to backend api url
+          params.append("start", startDate.toISOString());
+          params.append("end", endDate.toISOString());
+        }
+
+        const response = await fetch(`http://localhost:8080/api/fetch-workouts?${params}`);
+        if (!response.ok) {
           throw new Error('Network response was not ok');
         }
+
         const jsonData = await response.json(); 
         setFetchedWorkouts(jsonData);
       } catch (error) {
@@ -20,7 +58,7 @@ function History() {
       }
     };
     fetchWorkouts();
-  }, []);
+  }, [startDate, endDate]);
 
 
   return (
@@ -92,6 +130,21 @@ function History() {
 
     <div>
       <h2>Workout History</h2>
+      {/* filter by date range */}
+      <input type="date" onChange={e => {
+          // set start day in local time
+          const [year, month, day] = e.target.value.split('-').map(Number);
+          const localStart = new Date(year, month - 1, day, 0, 0, 0, 0);
+          setStartDate(localStart);
+        }} 
+      />
+      <input type="date" onChange={e => {
+        // set end date in local time
+        const [year, month, day] = e.target.value.split('-').map(Number);
+          const localEnd = new Date(year, month - 1, day, 23, 59, 59, 999)
+          setEndDate(localEnd);
+        }} 
+      />
       <ul>
         <div className='custom-container'>
           {fetchedWorkouts.map((workout) => (
