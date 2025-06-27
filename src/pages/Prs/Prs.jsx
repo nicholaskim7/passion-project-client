@@ -11,7 +11,7 @@ function Prs() {
     useEffect(() => {
       const fetchStrengthPrs = async () => {
         try {
-          const response = await fetch("http://localhost:8080/api/fetch-prs");
+          const response = await fetch("https://passion-project-server.onrender.com/api/fetch-prs");
           if (!response) {
             throw new Error('Network response was not ok');
           }
@@ -25,7 +25,7 @@ function Prs() {
 
       const fetchCardioPrs = async () => {
         try {
-          const response = await fetch("http://localhost:8080/api/fetch-cardio-prs");
+          const response = await fetch("https://passion-project-server.onrender.com/api/fetch-cardio-prs");
           if (!response) {
             throw new Error('Network response was not ok');
           }

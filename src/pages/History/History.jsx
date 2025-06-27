@@ -48,7 +48,7 @@ function History() {
           params.append("end", endDate.toISOString());
         }
 
-        const response = await fetch(`http://localhost:8080/api/fetch-workouts?${params}`);
+        const response = await fetch(`https://passion-project-server.onrender.com/api/fetch-workouts?${params}`);
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }

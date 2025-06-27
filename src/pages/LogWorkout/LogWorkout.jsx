@@ -160,7 +160,7 @@ function LogWorkout() {
       }
     }
     // otherwise we are safe to log the workout
-    fetch("http://localhost:8080/api/log-workout", {
+    fetch("https://passion-project-server.onrender.com/api/log-workout", {
       method: 'post',
       headers: {
         "Content-Type":"application/json"
@@ -187,7 +187,7 @@ function LogWorkout() {
         return;
       }
     }
-    fetch("http://localhost:8080/api/log-cardio", {
+    fetch("https://passion-project-server.onrender.com/api/log-cardio", {
       method: 'post',
       headers: {
         "Content-Type": "application/json"
