@@ -1,12 +1,41 @@
 .card {
-  padding: 2em;
+  display: flex;
   flex-direction: row;
+  justify-content: center;
+  padding: 2em;
+  gap: 1rem;
   background-color: rgb(13, 14, 14);
+  flex-wrap: wrap;
 }
 
 .button {
-  margin: 2em;
+  margin: 0.5em;
+  padding: 1em 2em;
   background-color: yellowgreen;
   border-radius: 0.5rem;
   color: black;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.button:hover {
+  background-color: #7cae4f;
+}
+
+/* stack buttons vertically for mobile */
+@media (max-width: 600px) {
+  .card {
+    flex-direction: column;
+    padding: 1em;
+    gap: 0.75rem;
+  }
+
+  .button {
+    width: 100%;
+    margin: 0;
+    padding: 1em 0;
+    font-size: 1.2rem;
+  }
 }
