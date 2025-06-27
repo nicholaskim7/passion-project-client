@@ -37,3 +37,10 @@
   color: yellowgreen;
 }
 
+.inputs {
+  border-style: solid;
+  border-width: 1px;
+  border-color: greenyellow;
+  background-color: #1a1a1a;
+}
+

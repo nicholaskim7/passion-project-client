@@ -61,6 +61,20 @@ function History() {
   }, [startDate, endDate]);
 
 
+  // accumulate strength workouts and cardio workouts done on the same day
+  const groupedByDate = fetchedWorkouts.reduce((acc, workout) => {
+    const dateKey = new Date(workout.date).toLocaleDateString();
+    // if we have not seen this date yet initialize empty array
+    if (!acc[dateKey]) {
+      acc[dateKey] = [];
+    }
+
+    // otherwise we want to group workouts by date
+    acc[dateKey].push(workout);
+    return acc;
+  }, {});
+
+
   return (
     // example format of fetched workout data
 
@@ -131,31 +145,36 @@ function History() {
     <div>
       <h2>Workout History</h2>
       {/* filter by date range */}
-      <input type="date" onChange={e => {
+      <input type="date" className='inputs' onChange={e => {
           // set start day in local time
           const [year, month, day] = e.target.value.split('-').map(Number);
+          // roll it back to the start of the day 0, 0, 0, 0
           const localStart = new Date(year, month - 1, day, 0, 0, 0, 0);
           setStartDate(localStart);
         }} 
       />
-      <input type="date" onChange={e => {
+      <input type="date" className='inputs' onChange={e => {
         // set end date in local time
         const [year, month, day] = e.target.value.split('-').map(Number);
+          // inclusive all the way till the last second of that day
           const localEnd = new Date(year, month - 1, day, 23, 59, 59, 999)
           setEndDate(localEnd);
         }} 
       />
       <ul>
         <div className='custom-container'>
-          {fetchedWorkouts.map((workout) => (
+          {Object.entries(groupedByDate).map(([date, workoutsOnThatDay]) => (
             //iterate workout sessions
-            <li key={workout.workoutId}> 
-              <h4>{new Date(workout.date).toLocaleDateString()}</h4>
+            <li key={date}> 
+              <h4>{date}</h4>
               <ul>
                 <div className='exercises-container'>
-                  {workout.exercises.map((exercise, idx) => ( // each workout session has a list of exercises that were done
-                    <li key={idx}>
+                  {workoutsOnThatDay.flatMap((workout, workoutIdx) =>
+                    workout.exercises.map((exercise, idx) => ( // each workout session has a list of exercises that were done
+                    // possible for user to run treadmill twice in one day for seperate workout ids we need unique key
+                    <li key={`${workoutIdx}-${idx}`}>
                       <strong className='exercise-name'>{exercise.name}</strong>
+                      {/* Strength workouts need to map each set */}
                       {exercise.category === "Strength" ? (
                         <ul className='list-of-sets'>
                           {exercise.sets.map((set, setIdx) => ( // each exercise has its respective sets and reps
@@ -164,13 +183,14 @@ function History() {
                             </li>
                           ))}
                         </ul>
-                      ) : (
-                        <li className='list-of-sets'>
-                          Duration (min): {exercise.cardio?.duration_minutes}, Calories burned: {exercise.cardio?.calories_burned}
-                        </li>
+                      ) : ( // cardio workouts
+                        <ul className='list-of-sets'>
+                          <li>Minutes: {exercise.cardio?.duration_minutes}, Calories burned: {exercise.cardio?.calories_burned}</li>
+                        </ul>
                       )}
                     </li>
-                  ))}
+                  ))
+                )}
                 </div>
               </ul>
             </li>
