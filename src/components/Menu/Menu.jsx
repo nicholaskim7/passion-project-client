@@ -13,6 +13,7 @@ function Menu() {
         </Dropdown.Toggle>
 
         <Dropdown.Menu className='menu'>
+          <Dropdown.Item href="/" className='item'>Home</Dropdown.Item>
           <Dropdown.Item href="/logworkout" className='item'>Log workout</Dropdown.Item>
           <Dropdown.Item href="/history" className='item'>Workout History</Dropdown.Item>
           <Dropdown.Item href="/your-prs" className='item'>Prs</Dropdown.Item>
