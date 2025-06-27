@@ -4,11 +4,24 @@
   border-style: solid;
   border-width: 1px;
   border-color: greenyellow;
-  box-shadow: greenyellow;
+  box-shadow: 0 0 5px greenyellow;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 10px;
   padding: 1rem;
+}
+
+/* stack workouts for smaller screens */
+@media (max-width: 768px) {
+  .custom-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .custom-container {
+    grid-template-columns: 1fr;
+  }
 }
 
 .form-container {
@@ -16,9 +29,10 @@
   border-style: solid;
   border-width: 1px;
   border-color: greenyellow;
-  box-shadow: greenyellow;
-  flex-direction: row;
-  gap: 10px;
+  box-shadow: 0 0 5px greenyellow;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
   padding: 1rem;
 }
 
@@ -32,10 +46,29 @@ ul.exercise-list {
   margin-bottom: 2rem;
 }
 
+@media (max-width: 768px) {
+  ul.exercise-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  ul.exercise-list {
+    grid-template-columns: 1fr;
+  }
+}
+
 ul.exercise-list li {
   flex: 1 1 30%;
   min-width: 250px;
 }
+
+@media (max-width: 480px) {
+  ul.exercise-list li {
+    min-width: auto;
+  }
+}
+
 
 .form-group-inline {
   display: flex;
@@ -48,17 +81,20 @@ ul.exercise-list li {
 .form-input {
   max-width: 115px;
   margin-bottom: 0;
+  width: 100%;
 }
 
 .set-buttons {
-  margin: 1rem;
+  margin: 1rem 0.5rem;
   font-size: 2em;
+  cursor: pointer;
 }
 
 .set-buttons:hover {
   border-style: solid;
   border-width: 1px;
   border-color: greenyellow;
+  border-radius: 0.3rem;
 }
 
 .workout-name {
@@ -72,12 +108,14 @@ ul.exercise-list li {
   padding: 0;
   cursor: pointer;
   color: inherit;
-  margin: 1rem;
+  margin: 1rem 0;
   font-size: 2em;
+  align-self: flex-start;
 }
 
 .save-button:hover {
   border-style: solid;
   border-width: 1px;
   border-color: greenyellow;
+  border-radius: 0.3rem;
 }
