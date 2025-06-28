@@ -8,6 +8,10 @@
   flex-wrap: wrap;
 }
 
+/* .title {
+  font-family: monospace;
+} */
+
 .button {
   margin: 0.5em;
   padding: 1em 2em;
@@ -35,7 +39,7 @@
   .button {
     width: 100%;
     margin: 0;
-    padding: 1em 0;
+    padding: 1em;
     font-size: 1.2rem;
   }
 }
