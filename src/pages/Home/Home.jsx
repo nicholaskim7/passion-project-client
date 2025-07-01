@@ -3,7 +3,7 @@ import { UserContext } from '../../components/UserContext/UserContext';
 import './Home.css';
 import { Link } from 'react-router-dom';
 
-function Home({ user }) {
+function Home() {
   const user = useContext(UserContext);
   console.log("User in Home:", user);
   
