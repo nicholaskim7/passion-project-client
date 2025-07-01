@@ -8,9 +8,10 @@
   flex-wrap: wrap;
 }
 
-/* .title {
-  font-family: monospace;
-} */
+.title {
+  color: yellowgreen;
+  margin-bottom: 2rem;
+} 
 
 .button {
   margin: 0.5em;

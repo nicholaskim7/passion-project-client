@@ -9,8 +9,8 @@ function Home() {
   
   return (
     <div>
-      <h1>SeungFit</h1>
-      <h1>Welcome, {user?.username || user?.name}!</h1>
+      <h1 className='title'>SeungFit</h1>
+      <h3>Hi, {user?.username || user?.name}</h3>
         <div className="card">
           <Link to="/logworkout">
             <button className="button">Log Workout</button>
