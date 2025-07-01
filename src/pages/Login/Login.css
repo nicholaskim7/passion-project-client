@@ -1,0 +1,25 @@
+.button {
+  margin: 0.5em;
+  padding: 1em 2em;
+  background-color: yellowgreen;
+  border-radius: 0.5rem;
+  color: black;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.button:hover {
+  background-color: #7cae4f;
+}
+
+/* stack buttons vertically for mobile */
+@media (max-width: 600px) {
+  .button {
+    width: 100%;
+    margin: 0;
+    padding: 1em;
+    font-size: 1.2rem;
+  }
+}
