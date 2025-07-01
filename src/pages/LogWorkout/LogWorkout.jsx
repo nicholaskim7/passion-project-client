@@ -141,6 +141,7 @@ function LogWorkout() {
 
   const getButtonStyle = (exercise) => ({
     backgroundColor: (exercise in liftData || exercise in cardioData) ? 'yellowgreen' : ' #1a1a1a',
+    color: 'white',
     border: '1px solid black',
     padding: '10px',
     margin: '5px',
