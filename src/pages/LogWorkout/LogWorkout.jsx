@@ -162,18 +162,29 @@ function LogWorkout() {
     // otherwise we are safe to log the workout
     fetch("https://passion-project-server.onrender.com/api/log-workout", {
       method: 'post',
+      credentials: 'include',
       headers: {
         "Content-Type":"application/json"
       },
       body: JSON.stringify(liftData)
-    }).then(response => response.json()).then(data => {
-      toast.success(data.message || "Workout logged successfully"); // response from server
-      setLiftData({}); // clear exercise selection after inserting into db
-    })
-    .catch(error => {
-      console.log(error);
-      toast.error("There was an error logging your workout")
-    });
+    }).then(async response => {
+        if (!response.ok) {
+          if (response.status === 401) {
+            toast.error("You must be logged in to log a strength workout");
+            return;
+          }
+          const errorData = await response.json();
+          throw new Error(errorData.error || "Unexpected error");
+        }
+
+        const data = await response.json();
+        toast.success(data.message || "Strength Workout logged successfully");
+        setLiftData({});
+      })
+      .catch(error => {
+        console.error(error);
+        toast.error(error.message || "There was an error logging your strength workout");
+      });
   };
 
 
@@ -189,17 +200,29 @@ function LogWorkout() {
     }
     fetch("https://passion-project-server.onrender.com/api/log-cardio", {
       method: 'post',
+      credentials: 'include',
       headers: {
         "Content-Type": "application/json"
       },
       body: JSON.stringify(cardioData)
-    }).then(response => response.json()).then(data => {
-      toast.success(data.message || "Cardio workout logged successfully");
-      setCardioData({});
-    }).catch(error => {
-      console.log(error);
-      toast.error("There was an error logging your cardio workout");
-    });
+    }).then(async response => {
+        if (!response.ok) {
+          if (response.status === 401) {
+            toast.error("You must be logged in to log a cardio workout");
+            return;
+          }
+          const errorData = await response.json();
+          throw new Error(errorData.error || "Unexpected error");
+        }
+
+        const data = await response.json();
+        toast.success(data.message || "Cardio Workout logged successfully");
+        setCardioData({});
+      })
+      .catch(error => {
+        console.error(error);
+        toast.error(error.message || "There was an error logging your cardio workout");
+      });
   };
 
   return (

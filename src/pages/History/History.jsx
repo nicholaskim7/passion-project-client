@@ -48,7 +48,9 @@ function History() {
           params.append("end", endDate.toISOString());
         }
 
-        const response = await fetch(`https://passion-project-server.onrender.com/api/fetch-workouts?${params}`);
+        const response = await fetch(`https://passion-project-server.onrender.com/api/fetch-workouts?${params}`, {
+          credentials: 'include',
+        });
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }
@@ -148,6 +150,8 @@ function History() {
 
     <div>
       <h2>Workout History</h2>
+      {error && <p className="error-message">Error fetching workouts: {error.message}</p>}
+      {Object.keys(groupedByDate).length === 0 && !error && <p>No workouts found for this date range.</p>}
       {/* filter by date range */}
       <input type="date" className='inputs' onChange={e => {
           // set start day in local time
