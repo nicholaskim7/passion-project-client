@@ -177,17 +177,19 @@ function History() {
               {workoutsOnThatDay.flatMap((workout, workoutIdx) =>
                 workout.exercises.map((exercise, idx) => (
                   <li key={`${workoutIdx}-${idx}`}>
-                    <strong className='exercise-name'>{exercise.name}</strong>
+                    <strong className={`exercise-name ${exercise.category === 'Strength' ? 'strength-name' : 'cardio-name'}`}>{exercise.name}</strong>
                     {exercise.category === "Strength" ? (
-                      <ul className='list-of-sets'>
+                      <ul className='list-of-sets-strength'>
                         {exercise.sets.map((set, setIdx) => (
-                          <li key={setIdx}>
+                          <li 
+                            key={setIdx}
+                          >
                             Set {setIdx + 1}: Reps: {set.reps}, Weight: {set.weight} lbs
                           </li>
                         ))}
                       </ul>
                     ) : (
-                      <ul className='list-of-sets'>
+                      <ul className='list-of-sets-cardio'>
                         <li>Minutes: {exercise.cardio?.duration_minutes}, Calories burned: {exercise.cardio?.calories_burned}</li>
                       </ul>
                     )}

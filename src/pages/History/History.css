@@ -36,24 +36,53 @@
   margin-bottom: 0.3rem;
 }
 
+.strength-name {
+  color: tomato;
+}
 
-.list-of-sets {
+.cardio-name {
+  color: dodgerblue;
+}
+
+
+.list-of-sets-strength {
   border-style: solid;
   border-width: 1px;
-  border-color: greenyellow;
+  border-color:tomato;
   margin-bottom: 1rem;
   padding: 0.5rem;
   border-radius: 0.3rem;
 }
 
-.list-of-sets > li {
+.list-of-sets-strength > li {
   list-style-type: none;
   font-weight: bold;
   margin: 5px 0;
   cursor: default;
 }
 
-.list-of-sets > li:hover {
+.list-of-sets-strength > li:hover {
+  color: yellowgreen;
+}
+
+
+.list-of-sets-cardio {
+  border-style: solid;
+  border-width: 1px;
+  border-color:dodgerblue;
+  margin-bottom: 1rem;
+  padding: 0.5rem;
+  border-radius: 0.3rem;
+}
+
+.list-of-sets-cardio > li {
+  list-style-type: none;
+  font-weight: bold;
+  margin: 5px 0;
+  cursor: default;
+}
+
+.list-of-sets-cardio > li:hover {
   color: yellowgreen;
 }
 
@@ -80,3 +109,10 @@ ul, li {
   margin: 0;
 }
 
+.strength-set {
+  background-color:lightcoral;
+}
+
+.cardio-set {
+  background-color:lightblue;
+}
