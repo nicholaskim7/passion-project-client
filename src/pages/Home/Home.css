@@ -16,10 +16,11 @@
 .button {
   margin: 0.5em;
   padding: 1em 2em;
-  background-color: yellowgreen;
+  border-style: solid;
+  border-color: yellowgreen;
+  border-width: 1px;
   border-radius: 0.5rem;
-  color: black;
-  border: none;
+  color: white;
   font-weight: bold;
   cursor: pointer;
   transition: background-color 0.3s ease;
