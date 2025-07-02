@@ -10,37 +10,21 @@ function Prs() {
   const [cardioError, setCardioError] = useState(null);
   
     useEffect(() => {
-      const fetchStrengthPrs = async () => {
-        try {
-          const response = await fetch("https://passion-project-server.onrender.com/api/fetch-prs", {
-            credentials: 'include',
-          });
-          if (!response.ok) {
-            throw new Error('Network response was not ok');
-          }
-          const jsonData = await response.json(); 
-          setFetchedStrengthPrs(jsonData);
-        } catch (error) {
-          setStrengthError(error);
-        }
-      };
-      fetchStrengthPrs();
-
-      const fetchCardioPrs = async () => {
-        try {
-          const response = await fetch("https://passion-project-server.onrender.com/api/fetch-cardio-prs", {
-            credentials: 'include',
-          });
-          if (!response.ok) {
-            throw new Error('Network response was not ok');
-          }
-          const jsonCardioData = await response.json(); 
-          setFetchedCardioPrs(jsonCardioData);
-        } catch (error) {
-          setCardioError(error);
-        }
-      };
-      fetchCardioPrs();
+      // parallel fetching
+      Promise.all([
+        fetch("https://passion-project-server.onrender.com/api/fetch-prs", {credentials: 'include',}),
+        fetch("https://passion-project-server.onrender.com/api/fetch-cardio-prs", {credentials: 'include',})
+      ])
+      .then(async ([strengthRes, cardioRes]) => {
+        if (!strengthRes.ok || !cardioRes.ok) throw new Error("One or more pr fetches failed");
+        const [strengthData, cardioData] = await Promise.all([strengthRes.json(), cardioRes.json()]);
+        setFetchedStrengthPrs(strengthData);
+        setFetchedCardioPrs(cardioData);
+      })
+      .catch((error) => {
+        setStrengthError(error);
+        setCardioError(error);
+      });
     }, []);
   
   
