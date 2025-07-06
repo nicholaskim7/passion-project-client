@@ -11,6 +11,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import Menu from './components/Menu/Menu';
 import Login from "./pages/Login/Login";
 import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute';
+import RainAnimation from './components/RainAnimation/RainAnimation';
 
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
         <BrowserRouter>
           <div className="app-container">
             <Menu />
+            <RainAnimation />
             <Routes>
 
               <Route path="/" element={

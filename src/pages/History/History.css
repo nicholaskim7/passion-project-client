@@ -37,18 +37,18 @@
 }
 
 .strength-name {
-  color: tomato;
+  color: yellowgreen;
 }
 
 .cardio-name {
-  color: dodgerblue;
+  color: white;
 }
 
 
 .list-of-sets-strength {
   border-style: solid;
   border-width: 1px;
-  border-color:tomato;
+  border-color: yellowgreen;
   margin-bottom: 1rem;
   padding: 0.5rem;
   border-radius: 0.3rem;
@@ -69,7 +69,7 @@
 .list-of-sets-cardio {
   border-style: solid;
   border-width: 1px;
-  border-color:dodgerblue;
+  border-color: yellowgreen;
   margin-bottom: 1rem;
   padding: 0.5rem;
   border-radius: 0.3rem;
