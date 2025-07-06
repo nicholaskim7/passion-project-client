@@ -23,7 +23,6 @@ function LogWorkout() {
       "Shoulder Press",
       "Lat Raises",
       "Face Pulls",
-      "Rear delt flys",
     ],
     "Back day": [
       "Chest Supported Seated Row",

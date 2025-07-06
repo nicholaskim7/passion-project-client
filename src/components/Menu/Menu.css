@@ -5,3 +5,23 @@
 .logout-button {
   color:tomato;
 }
+
+.dropdown-toggle::after {
+  display: none !important;
+}
+
+.dropdown-btn {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.5rem;
+  padding: 0.5rem;
+  cursor: pointer;
+}
+
+.dropdown-btn:hover {
+  background: none;
+  outline: none;
+  color: #adff2f;
+  box-shadow: none;
+}
