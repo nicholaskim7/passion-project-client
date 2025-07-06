@@ -8,11 +8,17 @@ function Home() {
   console.log("User in Home:", user);
   const [datesWorkedOut, setDatesWorkedOut] = useState(0);
   const [error, setError] = useState(null);
+  //Get user’s timezone
+  const timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
 
   useEffect (() => {
     const fetchActivity = async () => {
       try {
         const response = await fetch('https://passion-project-server.onrender.com/api/fetch-user-activity', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          // Send users timezone to backend
+          body: JSON.stringify({ timeZone }),
           credentials: 'include',
         });
         if (!response.ok) {
