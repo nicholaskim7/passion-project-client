@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import './App.css';
-import axios from "axios";
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import LogWorkout from "./pages/LogWorkout/LogWorkout";
 import Home from "./pages/Home/Home";
@@ -12,6 +11,7 @@ import Menu from './components/Menu/Menu';
 import Login from "./pages/Login/Login";
 import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute';
 import RainAnimation from './components/RainAnimation/RainAnimation';
+import UpdateProfile from './pages/UpdateProfile/UpdateProfile';
 
 
 function App() {
@@ -47,6 +47,12 @@ function App() {
               <Route path='/your-prs' element={
                 <ProtectedRoute>
                   <Prs />
+                </ProtectedRoute> 
+              } />
+
+              <Route path='/update-profile' element={
+                <ProtectedRoute>
+                  <UpdateProfile />
                 </ProtectedRoute> 
               } />
             </Routes>

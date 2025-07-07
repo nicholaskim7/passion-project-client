@@ -27,9 +27,10 @@ function Menu() {
 
         <Dropdown.Menu className='menu'>
           <Dropdown.Item href="/" className='item'>Home</Dropdown.Item>
-          <Dropdown.Item href="/logworkout" className='item'>Log workout</Dropdown.Item>
+          <Dropdown.Item href="/logworkout" className='item'>Log Workout</Dropdown.Item>
           <Dropdown.Item href="/history" className='item'>Workout History</Dropdown.Item>
           <Dropdown.Item href="/your-prs" className='item'>Prs</Dropdown.Item>
+          <Dropdown.Item href="/update-profile" className='item'>Update Profile</Dropdown.Item>
           <Dropdown.Item onClick={handleLogout} className='logout-button'>Logout</Dropdown.Item>
         </Dropdown.Menu>
       </Dropdown>

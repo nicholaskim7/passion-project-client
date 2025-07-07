@@ -152,22 +152,24 @@ function History() {
       <h2>Workout History</h2>
       {error && <p className="error-message">Error fetching workouts: {error.message}</p>}
       {/* filter by date range */}
-      <input type="date" className='inputs' onChange={e => {
-          // set start day in local time
+      <div className='dates-inputs'>
+        <input type="date" className='inputs' onChange={e => {
+            // set start day in local time
+            const [year, month, day] = e.target.value.split('-').map(Number);
+            // roll it back to the start of the day 0, 0, 0, 0
+            const localStart = new Date(year, month - 1, day, 0, 0, 0, 0);
+            setStartDate(localStart);
+          }}
+        />
+        <input type="date" className='inputs' onChange={e => {
+          // set end date in local time
           const [year, month, day] = e.target.value.split('-').map(Number);
-          // roll it back to the start of the day 0, 0, 0, 0
-          const localStart = new Date(year, month - 1, day, 0, 0, 0, 0);
-          setStartDate(localStart);
-        }} 
-      />
-      <input type="date" className='inputs' onChange={e => {
-        // set end date in local time
-        const [year, month, day] = e.target.value.split('-').map(Number);
-          // inclusive all the way till the last second of that day
-          const localEnd = new Date(year, month - 1, day, 23, 59, 59, 999)
-          setEndDate(localEnd);
-        }} 
-      />
+            // inclusive all the way till the last second of that day
+            const localEnd = new Date(year, month - 1, day, 23, 59, 59, 999)
+            setEndDate(localEnd);
+          }}
+        />
+      </div>
       <ul className='custom-container'>
         {Object.keys(groupedByDate).length === 0 && !error && <p>No workouts found for this date range.</p>}
         {Object.entries(groupedByDate).map(([date, workoutsOnThatDay]) => (

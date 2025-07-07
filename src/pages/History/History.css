@@ -101,6 +101,10 @@
   width: 150px;
 }
 
+.dates-inputs .inputs:first-child {
+  margin-right: 1rem;
+}
+
 
 
 @media (max-width: 480px) {
