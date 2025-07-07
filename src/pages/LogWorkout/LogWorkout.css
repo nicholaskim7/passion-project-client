@@ -92,10 +92,7 @@ ul.exercise-list li {
 }
 
 .set-buttons:hover {
-  border-style: solid;
-  border-width: 1px;
-  border-color: greenyellow;
-  border-radius: 0.3rem;
+  color: yellowgreen
 }
 
 .workout-name {
@@ -115,8 +112,5 @@ ul.exercise-list li {
 }
 
 .save-button:hover {
-  border-style: solid;
-  border-width: 1px;
-  border-color: greenyellow;
-  border-radius: 0.3rem;
+  color: yellowgreen
 }

@@ -18,3 +18,10 @@
   margin-top: 1rem;
   border-radius: 0.3rem;
 }
+
+.exercise-name {
+  color: yellowgreen;
+  font-size:x-large;
+  margin-bottom: 0.3rem;
+  margin-top: 0.3rem;
+}

@@ -1,5 +1,5 @@
 import React from 'react'
-import '../History/History.css';
+//import '../History/History.css';
 import { useState, useEffect } from 'react';
 import './Prs.css';
 

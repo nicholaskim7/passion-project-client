@@ -22,16 +22,17 @@
   margin: 4px;
 }
 
-.icon:hover {
+/* .icon:hover {
   border-width: 0.5px;
   border-style: solid;
   border-color: yellowgreen;
-}
+} */
 
 .selected {
-  border-width: 0.5px;
-  border-style: solid;
-  border-color: yellowgreen;
+  outline: none;
+  box-shadow: 0 0 10px yellowgreen;
+  background-color: rgba(127, 255, 0, 0.1);
+  border-radius: 8px;
 }
 
 img {
