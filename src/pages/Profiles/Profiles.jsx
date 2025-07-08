@@ -10,8 +10,10 @@ function Profiles() {
   useEffect(() => {
     const fetchProfile = async () => {
       try {
+        const encodedUsername = encodeURIComponent(username);
+
         // need to get the username from url and navigate to their public profile page
-        const response = await fetch('https://passion-project-server.onrender.com/api/public-profile/:username', {
+        const response = await fetch(`https://passion-project-server.onrender.com/api/public-profile/${encodedUsername}`, {
           method: 'GET',
           credentials: 'include',
         });
