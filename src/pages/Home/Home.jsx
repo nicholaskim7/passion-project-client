@@ -1,13 +1,17 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { UserContext } from '../../components/UserContext/UserContext';
 import './Home.css';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import Search from '../../components/Search/Search';
+
 
 function Home() {
+  const navigate = useNavigate();
   const user = useContext(UserContext);
   console.log("User in Home:", user);
   const [datesWorkedOut, setDatesWorkedOut] = useState(0);
   const [error, setError] = useState(null);
+  const [serchedUser, setSearchedUser] = useState('');
   //Get user’s timezone
   const timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
 
@@ -33,9 +37,20 @@ function Home() {
     }
     fetchActivity();
   }, []);
+
+  const handleSearch = (search) => { // search value is passed from Search.jsx
+    setSearchedUser(search); //update with whatever user name is searched
+
+    // if searched something
+    if (search.trim() !== '') {
+      navigate(`profile/${search}`);
+    }
+  };
   
   return (
     <div>
+      {/* search for user name */}
+      <Search onSearch={handleSearch}/>
       <h1 className='title'>SeungFit</h1>
       <img
         src={user?.avatar_path || '/default-avatar.png'}

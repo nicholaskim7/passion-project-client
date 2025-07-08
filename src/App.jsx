@@ -12,6 +12,7 @@ import Login from "./pages/Login/Login";
 import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute';
 import RainAnimation from './components/RainAnimation/RainAnimation';
 import UpdateProfile from './pages/UpdateProfile/UpdateProfile';
+import Profiles from './pages/Profiles/Profiles';
 
 
 function App() {
@@ -53,6 +54,12 @@ function App() {
               <Route path='/update-profile' element={
                 <ProtectedRoute>
                   <UpdateProfile />
+                </ProtectedRoute> 
+              } />
+
+              <Route path='/profile/:username' element={
+                <ProtectedRoute>
+                  <Profiles />
                 </ProtectedRoute> 
               } />
             </Routes>
