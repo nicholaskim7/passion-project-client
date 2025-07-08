@@ -1,8 +1,9 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { UserContext } from '../../components/UserContext/UserContext';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 
 function Profiles() {
+  const navigate = useNavigate();
   const { username } = useParams();
   const [fetchedProfileData, setFetchedProfileData] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -24,6 +25,11 @@ function Profiles() {
         if (!response.ok) {
           if (response.status === 404) {
             setNotFound(true);
+
+            // add delay so user can see that they searched for non existing username before navigating back home
+            setTimeout(() => {
+              navigate('/');
+            }, 2000);
           }
           throw new Error('Network response was not ok');
         }
