@@ -33,12 +33,20 @@ function Profiles() {
   
   return (
     <div>
-      <h3>{`@${fetchedProfileData.username}`}</h3>
-      <img
-        src={fetchedProfileData.avatar_path || '/default-avatar.png'}
-        alt='Profile Avatar'
-        style={{ width: '100px', height: '100px', borderRadius: '50%', objectFit: 'cover', border: '1px solid yellowgreen', boxShadow: '0 0 5px rgba(0, 0, 0, 0.2)' }}
-      />
+      {fetchedProfileData.username ? (
+        <>
+          <h3>{`@${fetchedProfileData.username}`}</h3>
+          <img
+            src={fetchedProfileData.avatar_path || '/default-avatar.png'}
+            alt='Profile Avatar'
+            style={{ width: '100px', height: '100px', borderRadius: '50%', objectFit: 'cover', border: '1px solid yellowgreen', boxShadow: '0 0 5px rgba(0, 0, 0, 0.2)' }}
+          />
+        </>
+      ) : (
+        <h3>Loading profile...</h3>
+      )}
+      
+      
       
     </div>
   )
