@@ -8,7 +8,7 @@ function Search({ onSearch }) {
     // add a delay to only trigger search once user is done typing
     const handler = setTimeout(() => {
       setDebouncedSearch(searchUser);
-    }, 300);
+    }, 1000); // 700ms delay
 
     return () => clearTimeout(handler);
   }, [searchUser])
