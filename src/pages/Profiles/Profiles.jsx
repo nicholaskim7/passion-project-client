@@ -4,12 +4,15 @@ import { useParams } from 'react-router-dom';
 
 function Profiles() {
   const { username } = useParams();
-  const [fetchedProfileData, setFetchedProfileData] = useState({});
+  const [fetchedProfileData, setFetchedProfileData] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [notFound, setNotFound] = useState(false);
   const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchProfile = async () => {
       try {
+        // encode the user name as spaces give trouble in URL
         const encodedUsername = encodeURIComponent(username);
 
         // need to get the username from url and navigate to their public profile page
@@ -19,12 +22,18 @@ function Profiles() {
         });
 
         if (!response.ok) {
+          if (response.status === 404) {
+            setNotFound(true);
+          }
           throw new Error('Network response was not ok');
         }
         const profileData = await response.json();
         setFetchedProfileData(profileData);
       } catch (error) {
         setError(error);
+      } finally {
+        // either we found the user or we didnt we dont want user to wait forever
+        setLoading(false);
       }
     }
     fetchProfile();
@@ -33,7 +42,11 @@ function Profiles() {
   
   return (
     <div>
-      {fetchedProfileData.username ? (
+      {loading ? (
+        <h3>Loading profile...</h3>
+      ) : notFound ? (
+        <h3>User not found</h3>
+      ) : (
         <>
           <h3>{`@${fetchedProfileData.username}`}</h3>
           <img
@@ -42,12 +55,7 @@ function Profiles() {
             style={{ width: '100px', height: '100px', borderRadius: '50%', objectFit: 'cover', border: '1px solid yellowgreen', boxShadow: '0 0 5px rgba(0, 0, 0, 0.2)' }}
           />
         </>
-      ) : (
-        <h3>Loading profile...</h3>
       )}
-      
-      
-      
     </div>
   )
 }
