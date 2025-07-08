@@ -48,7 +48,7 @@ function Home() {
   };
   
   return (
-    <div>
+    <div className='home-container'>
       {/* search for user name */}
       <Search onSearch={handleSearch}/>
       <h1 className='title'>SeungFit</h1>

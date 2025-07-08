@@ -46,3 +46,15 @@
     font-size: 1.2rem;
   }
 }
+
+.home-container > .search-container:not(.expanded) .searchbar {
+  display: none;
+}
+
+.home-container > .search-container{
+  position: fixed;
+  top: 40px;
+  right: 1200px;
+  z-index: 1000;
+}
+
