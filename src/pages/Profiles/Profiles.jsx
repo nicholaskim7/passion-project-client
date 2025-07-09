@@ -84,7 +84,7 @@ function Profiles() {
           <img
             src={fetchedProfileData.avatar_path || '/default-avatar.png'}
             alt='Profile Avatar'
-            style={{ width: '100px', height: '100px', borderRadius: '50%', objectFit: 'cover', border: '1px solid yellowgreen', boxShadow: '0 0 5px rgba(0, 0, 0, 0.2)' }}
+            style={{ width: '100px', height: '100px', borderRadius: '50%', objectFit: 'cover', border: '1px solid yellowgreen', boxShadow: '0 0 5px rgba(0, 0, 0, 0.2)', marginBottom: '2rem' }}
           />
           <div className='prs-section'>
             {/* display users prs only standardized lifts: bench, squat, and deadlift*/}
