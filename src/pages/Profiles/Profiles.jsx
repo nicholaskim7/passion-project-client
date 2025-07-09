@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { UserContext } from '../../components/UserContext/UserContext';
 import { useParams, useNavigate } from 'react-router-dom';
+import '../Prs/Prs.css';
 
 function Profiles() {
   const navigate = useNavigate();
@@ -9,6 +10,11 @@ function Profiles() {
   const [loading, setLoading] = useState(true);
   const [notFound, setNotFound] = useState(false);
   const [error, setError] = useState(null);
+
+  const [fetchedStrengthPrs, setFetchedStrengthPrs] = useState([]);
+  const [fetchedCardioPrs, setFetchedCardioPrs] = useState([]);
+  const [strengthError, setStrengthError] = useState(null);
+  const [cardioError, setCardioError] = useState(null);
 
   useEffect(() => {
     const fetchProfile = async () => {
@@ -45,6 +51,26 @@ function Profiles() {
     fetchProfile();
 
   }, [username]);
+
+  useEffect(() => {
+    //console.log("Encoded username", encodeURIComponent(username));
+    const encodedUsername = encodeURIComponent(username);
+    // parallel fetching
+    Promise.all([
+      fetch(`https://passion-project-server.onrender.com/api/fetch-public-prs/${encodedUsername}`, {credentials: 'include',}),
+      fetch(`https://passion-project-server.onrender.com/api/fetch-public-cardio-prs/${encodedUsername}`, {credentials: 'include',})
+    ])
+    .then(async ([strengthRes, cardioRes]) => {
+      if (!strengthRes.ok || !cardioRes.ok) throw new Error("One or more pr fetches failed");
+        const [strengthData, cardioData] = await Promise.all([strengthRes.json(), cardioRes.json()]);
+        setFetchedStrengthPrs(strengthData);
+        setFetchedCardioPrs(cardioData);
+      })
+      .catch((error) => {
+        setStrengthError(error);
+        setCardioError(error);
+      });
+  }, []);
   
   return (
     <div>
@@ -60,6 +86,41 @@ function Profiles() {
             alt='Profile Avatar'
             style={{ width: '100px', height: '100px', borderRadius: '50%', objectFit: 'cover', border: '1px solid yellowgreen', boxShadow: '0 0 5px rgba(0, 0, 0, 0.2)' }}
           />
+          <div className='prs-section'>
+            {/* display users prs only standardized lifts: bench, squat, and deadlift*/}
+            <div className='strength'>
+              <h3>{`${fetchedProfileData.username}'s Strength Prs`}</h3>
+              {fetchedStrengthPrs.length > 0 ? (
+                fetchedStrengthPrs.map((pr) => (
+                  <div key={pr.key} className='box'>
+                    <h3 className='exercise-name'>{pr.name}</h3>
+                    <p>{pr.weight} lbs x {pr.reps} reps</p>
+                    <p>Date: {new Date(pr.date).toLocaleDateString()}</p>
+                  </div>
+                ))
+              ) : (
+                <p>No strength prs yet</p>
+              )
+                    }
+            </div>
+            
+            {/* display cardio prs running, biking, swimming, stairmaster */}
+            <div className='cardio'>
+              <h3>{`${fetchedProfileData.username}'s Cardio Prs`}</h3>
+              {fetchedCardioPrs.length > 0 ? (
+                fetchedCardioPrs.map((cardio) => (
+                  <div key={cardio.key} className='box'>
+                    <h3 className='exercise-name'>{cardio.name}</h3>
+                      <p>{cardio.duration} minutes x {cardio.calories} calories burned</p>
+                      <p>Date: {new Date(cardio.date).toLocaleDateString()}</p>
+                  </div>
+                ))
+              ) : (
+                <p>No cardio prs yet</p>
+              )
+              }
+            </div>
+          </div>
         </>
       )}
     </div>
