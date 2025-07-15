@@ -50,7 +50,7 @@ function Search({ onSelect }) {
       return;
     }
     try {
-      // fetch usernames that are similiar to what the user searched from the database
+      // fetch usernames that are similar to what the user searched from the database
       const res = await fetch(`https://passion-project-server.onrender.com/api/search-users?q=${encodeURIComponent(query)}`, {
         credentials: 'include'
       });
@@ -64,12 +64,12 @@ function Search({ onSelect }) {
   const handleChange = (event) => {
     const value = event.target.value;
     setSearchUser(value);
-    // upon change we also want to fetch the similiar usernames of the new search query
+    // upon change we also want to fetch the similar usernames of the new search query
     fetchSuggestions(value);
   };
 
   const handleKeyDown = (event) => {
-    // trigger onSelect either by pressing enter or by clicking on a suggested username that is similiar to what was searched
+    // trigger onSelect either by pressing enter or by clicking on a suggested username that is similar to what was searched
     if (event.key === 'Enter' && searchUser.trim() !== '') {
       onSelect(searchUser); // onSelect will navigate to users public profile
       setSearchSuggestions([]);
@@ -109,7 +109,7 @@ function Search({ onSelect }) {
             className='searchbar'
           />
           {searchSuggestions.length > 0 && (
-            // show usernames that are similiar to what was searched
+            // show usernames that are similar to what was searched
             <ul className="search-suggestions">
               {searchSuggestions.map((username) => (
                 <li key={username} onClick={() => handleSuggestionClick(username)}>
