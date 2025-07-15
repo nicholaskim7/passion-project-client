@@ -1,5 +1,34 @@
+.search-dropdown {
+  position: relative;
+}
+
+.search-suggestions {
+  list-style: none;
+  background: white;
+  color: black;
+  border: 1px solid #ccc;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  top: 100%;
+  width: 100%;
+  z-index: 1000;
+  max-height: 150px;
+  overflow-y: auto;
+}
+
+.search-suggestions li {
+  padding: 0.5rem;
+  cursor: pointer;
+}
+
+.search-suggestions li:hover {
+  background-color: #eee;
+}
+
 .search-container {
   display: flex;
   align-items: center;
   gap: 0.5rem;
 }
+

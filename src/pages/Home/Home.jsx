@@ -11,7 +11,7 @@ function Home() {
   console.log("User in Home:", user);
   const [datesWorkedOut, setDatesWorkedOut] = useState(0);
   const [error, setError] = useState(null);
-  const [serchedUser, setSearchedUser] = useState('');
+  const [serchedUsers, setSearchedUsers] = useState([]);
   //Get user’s timezone
   const timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
 
@@ -39,7 +39,7 @@ function Home() {
   }, []);
 
   const handleSearch = (search) => { // search value is passed from Search.jsx
-    setSearchedUser(search); //update with whatever user name is searched
+    setSearchedUsers(search); //update with whatever user name is searched
 
     // if searched something
     if (search.trim() !== '') {
@@ -50,7 +50,7 @@ function Home() {
   return (
     <div className='home-container'>
       {/* search for user name */}
-      <Search onSearch={handleSearch}/>
+      <Search onSelect={handleSearch}/>
       <h1 className='title'>SeungFit</h1>
       <img
         src={user?.avatar_path || '/default-avatar.png'}
