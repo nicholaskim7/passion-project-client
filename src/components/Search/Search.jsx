@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react'
 import './Search.css';
-import { FaSearch } from 'react-icons/fa';
+import { FaSearch, FaUser } from 'react-icons/fa';
 
 function Search({ onSelect }) {
   const [searchUser, setSearchUser] = useState('');
@@ -113,6 +113,7 @@ function Search({ onSelect }) {
             <ul className="search-suggestions">
               {searchSuggestions.map((username) => (
                 <li key={username} onClick={() => handleSuggestionClick(username)}>
+                  <FaUser className='user-icon'/>
                   {username}
                 </li>
               ))}

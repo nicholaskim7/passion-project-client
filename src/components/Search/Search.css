@@ -4,9 +4,9 @@
 
 .search-suggestions {
   list-style: none;
-  background: white;
-  color: black;
-  border: 1px solid #ccc;
+  background: #1a1a1a;
+  color: white;
+  border: 1px solid yellowgreen;
   margin: 0;
   padding: 0;
   position: absolute;
@@ -23,7 +23,7 @@
 }
 
 .search-suggestions li:hover {
-  background-color: #eee;
+  background-color: rgba(153, 205, 50, 0.774);
 }
 
 .search-container {
@@ -32,3 +32,7 @@
   gap: 0.5rem;
 }
 
+.user-icon {
+  margin-right: 6px;
+  margin-bottom: 4px;
+}

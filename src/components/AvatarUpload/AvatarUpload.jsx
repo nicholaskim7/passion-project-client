@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { toast } from 'react-toastify';
+import './AvatarUpload.css';
 
 
 function AvatarUpload() {
@@ -32,10 +33,12 @@ function AvatarUpload() {
   return (
     <div>
       <h2>Update avatar:</h2>
-      <form onSubmit={handleUpload}>
-        <input type="file" accept="image/*" onChange={e => setFile(e.target.files[0])} />
-        <button type="submit">Upload</button>
-      </form>
+      <div className='update-form'>
+        <form onSubmit={handleUpload}>
+          <input type="file" accept="image/*" onChange={e => setFile(e.target.files[0])} />
+          <button type="submit">Upload</button>
+        </form>
+      </div>
     </div>
   )
 }
