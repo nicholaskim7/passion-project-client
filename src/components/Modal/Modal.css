@@ -1,0 +1,61 @@
+.goals-button {
+  background-color: #1a1a1a;
+  color: #ffffff;
+  border: 1px solid yellowgreen;
+  border-radius: 5px;
+  padding: 0.4rem 1rem;
+  font-weight: 500;
+  transition: background-color 0.3s;
+}
+
+.goals-button:hover {
+  background-color: rgba(153, 205, 50, 0.849);
+  
+}
+
+
+.close-button {
+  background-color: #1a1a1a;
+  color: #ffffff;
+  border: 1px solid yellowgreen;
+  border-radius: 5px;
+  padding: 0.4rem 1rem;
+  font-weight: 500;
+  transition: background-color 0.3s;
+  min-width: 120px;
+}
+
+.close-button:hover {
+  background-color: rgba(56, 61, 45, 0.849);
+  
+}
+
+.goal-save-button {
+  background-color: rgba(153, 205, 50, 0.836);
+  color: #ffffff;
+  border: 1px solid #1a1a1a;
+  border-radius: 5px;
+  padding: 0.4rem 1rem;
+  font-weight: 500;
+  transition: background-color 0.3s;
+  min-width: 120px;
+}
+
+.goal-save-button:hover {
+  background-color: yellowgreen;
+  
+}
+
+
+.custom-modal .modal-content {
+  background-color: #1a1a1a;
+  color: #ffffff;
+  border-radius: 10px;
+  border: none;
+}
+.custom-modal .modal-header,
+.custom-modal .modal-body,
+.custom-modal .modal-footer {
+  border: none;
+}
+

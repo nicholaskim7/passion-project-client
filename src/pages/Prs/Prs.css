@@ -4,6 +4,15 @@
   justify-content: space-between;
   gap: 2rem;
   flex-wrap: wrap;
+  margin-bottom: 5rem;
+}
+
+.goals-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 2rem;
+  flex-wrap: wrap;
 }
 
 .strength, .cardio {
@@ -24,4 +33,26 @@
   font-size:x-large;
   margin-bottom: 0.3rem;
   margin-top: 0.3rem;
+}
+
+
+.goal-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  padding: 1rem;
+  margin-bottom: 5rem;
+}
+
+/* stack workouts for smaller screens */
+@media (max-width: 768px) {
+  .goal-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .goal-container {
+    grid-template-columns: 1fr;
+  }
 }
